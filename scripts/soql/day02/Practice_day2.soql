@@ -1,0 +1,388 @@
+
+
+// ---------- 3/23/2023 -----------
+
+
+//PART 1:
+// Feel free to use SOQL Building(by flipping the page)
+// to observe what's the correct Object name and fields names 
+
+// Get All the Profiles Id, Name fields 
+// if the profile name is 
+// System Administator, Standard User , Standard Platform User
+
+
+// Get All the Role , Id, Name From Role Standard Object 
+
+// Get All the RecordType , Id, Name From RecordType Standard Object
+
+// Get All the Group , Id , Name from Group Standard object
+// this is where all public groups , queues stored
+
+
+// SELECT  Id, Name
+// FROM Profile
+// WHERE Name IN ('System Administrator','Standard User','Standard Platform User')
+
+// SELECT Id, Name, DeveloperName
+//  FROM UserRole
+//SELECT Id, Name, DeveloperName
+//  FROM RecordType
+// SELECT Id, DeveloperName,Type
+//  FROM Group
+// SELECT  Id, Author__c, Price__c, Description__c, Year__c
+// FROM Book__c
+// WHERE Description__c != NULL
+// OR Price__c != NULL 
+
+// How to get All the fields 
+// FIELDS (ALL) , FIELDS (STANDARD), FIELDS(CUSTOM)
+// ONLY IF YOU USE LIMIT 200 or Less at the end  
+
+// SELECT FIELDS(ALL)
+// FROM Book__c
+// LIMIT 200
+
+// PARTIAL CONTIDTION , FUZZY SEARCH 
+
+// RELATIONAL OPERATOR > >= < <=  != IN NOT IN  
+
+// LIKE  % (WILD CARD, it can represent 0 or more characters)
+// Get all contacts First Name and LastName 
+// if FirstName starts with letter A  
+// We can use LIKE 'A%'  
+// it matches A , AA, Adam, ABCD123 ... 
+
+// SELECT FirstName, LastName
+// FROM Contact
+// WHERE FirstName LIKE 'A%'
+
+// Get all contacts First Name and LastName 
+// if FirstName end with letter A  
+// We can use LIKE '%A'  
+// it matches  Alba, Joshua, BA, PA, 12312A
+// SELECT FirstName, LastName
+//   FROM Contact
+//   WHERE FirstName LIKE '%A'
+
+// Get all contacts First Name and LastName 
+// if FirstName contains letter A  
+// We can use LIKE '%A%'  
+// it matches  Alba, Game, Apex, Battery, Alberta
+// SELECT FirstName, LastName
+// FROM Contact
+// WHERE FirstName LIKE '%A%'
+
+// Get all contacts First Name and LastName 
+// if FirstName starts with A and Ends with Y 
+// We can use LIKE 'A%Y'  
+// it matches  Andy, Albany, Ashley, Ay, Amy,audrey
+// SELECT FirstName, LastName
+// FROM Contact
+// WHERE FirstName LIKE 'A%Y'
+
+// LIKE _(underscore can represent exactly 1 character of any kind)
+// Get all contacts First Name and LastName 
+// if FirstName starts with A and Ends with Y 
+// AND has exactly 4 Charcters (meaning there are 2 character in between A and Y)
+
+// We can use LIKE 'A__Y'  
+// it matches  Andy, Anny, Abcy, APZy, A12y,aXYy
+// SELECT FirstName, LastName
+// FROM Contact
+// WHERE FirstName LIKE 'A__Y'
+
+
+// Get All the contacts created Today
+// if you use actual date 
+// SOQL require Date along with the time exatcly in this format 
+// 2023-03-23T12:46:08Z
+// However we can use all Date literals available in SOQL to make it easy
+//https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_dateformats.htm
+// TODAY , YESTERDAY, TOMORROW 
+// THIS_WEEK, LAST_WEEK,NEXT_WEEK
+// THIS_MONTH, LAST_MONTH, NEXT_MONTH
+// LAST_90_DAYS , NEXT_90_DAYS , 
+// LAST_N_DAYS:n, NEXT_N_DAYS:n      N_DAYS_AGO:n ,
+//  NEXT_N_WEEKS:n , LAST_N_WEEKS:n
+// AND MORE 
+
+// SELECT FirstName, LastName
+// FROM Contact 
+// WHERE CreatedDate = YESTERDAY 
+
+
+// Get all the opportunity created past 2 weeks 
+// SELECT Name, CloseDate, StageName, CreatedDate
+// FROM Opportunity
+// WHERE CreatedDate = LAST_N_WEEKS:2
+
+
+// Get all the opportunity ClosedDate is Last 90 Days 
+
+
+SELECT Name, CloseDate, StageName
+FROM Opportunity
+WHERE CloseDate = LAST_90_DAYS
+ORDER BY CloseDate Desc
+
+
+SELECT Name, ApiVersion, Body
+FROM ApexTrigger
+
+
+SELECT Id, Username, FirstName, LastName
+FROM User
+
+
+SELECT  Id, Name
+FROM Profile
+WHERE Name IN ('System Administrator','Standard User','Standard Platform User')
+
+
+SELECT Id, Name, DeveloperName
+FROM UserRole
+
+
+SELECT Id, Name, DeveloperName
+FROM RecordType
+
+
+SELECT Id, DeveloperName,Type
+FROM Group
+
+
+SELECT  Id, Author__c, Price__c, Description__c, Year__c
+FROM Book__c
+WHERE Description__c != NULL
+OR Price__c != NULL 
+
+
+
+SELECT FIELDS(ALL)
+FROM Account
+LIMIT 200 
+
+
+SELECT FIELDS(STANDARD)
+FROM Account
+LIMIT 200 
+
+
+
+SELECT FIELDS(CUSTOM)
+FROM Account
+LIMIT 200 
+
+
+
+
+// LIKE  % (WILD CARD, it can represent 0 or more characters )
+// Get all contacts First Name and LastName 
+// if FirstName starts with letter A 
+
+SELECT FirstName, LastName
+FROM Contact
+WHERE FirstName LIKE 'A%'
+// LIKE  % (WILD CARD, it can represent 0 or more characters )
+// Get all contacts First Name and LastName 
+// if FirstName starts with letter JO  
+
+SELECT FirstName, LastName
+FROM Contact
+WHERE FirstName LIKE 'JO%'
+
+
+
+
+// Get all contacts First Name and LastName 
+// if FirstName end with letter A  
+// We can use LIKE '%A'  
+// it matches  Alba, Joshua, BA, PA, 12312A
+SELECT FirstName, LastName
+FROM Contact
+WHERE FirstName LIKE '%A'
+
+
+
+
+// Get all contacts First Name and LastName 
+// if FirstName contains letter A  
+// We can use LIKE '%A%'  
+// it matches  Alba, Game, Apex, Battery, Alberta
+SELECT FirstName, LastName
+FROM Contact
+WHERE FirstName LIKE '%A%'
+
+
+
+
+// Get all contacts First Name and LastName 
+// if FirstName starts with A and Ends with Y 
+// We can use LIKE 'A%Y'  
+// it matches  Andy, Albany, Ashley, Ay, Amy
+SELECT FirstName, LastName
+FROM Contact
+WHERE FirstName LIKE 'A%Y'
+
+
+
+// Get all contacts First Name and LastName 
+// if FirstName starts with A and Ends with Y 
+// AND has exactly 4 Charcters (meaning there are 2 character in between A and Y)
+
+// We can use LIKE 'A__Y'  
+// it matches  Andy, Anny, Abcy, APZy, A12y,aXYy
+SELECT FirstName, LastName
+ FROM Contact
+ WHERE FirstName LIKE 'A__Y'
+
+
+
+ // Get All the contacts created Today
+// if you use actual date 
+// SOQL require Date along with the time exatcly in this format 
+// 2023-03-23T12:46:08Z
+// However we can use all Date literals available in SOQL to make it easy
+//https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_dateformats.htm
+// TODAY , YESTERDAY, TOMORROW 
+// THIS_WEEK, LAST_WEEK,NEXT_WEEK
+// THIS_MONTH, LAST_MONTH, NEXT_MONTH
+// LAST_90_DAYS , NEXT_90_DAYS , 
+// LAST_N_DAYS:n, NEXT_N_DAYS:n      N_DAYS_AGO:n ,
+//  NEXT_N_WEEKS:n , LAST_N_WEEKS:n
+// AND MORE 
+
+
+
+
+SELECT FirstName, LastName
+FROM Contact 
+WHERE CreatedDate = YESTERDAY 
+
+
+
+
+// Get all the opportunity created past 2 weeks 
+ SELECT Name, CloseDate, StageName, CreatedDate
+ FROM Opportunity
+ WHERE CreatedDate = LAST_N_WEEKS:2
+
+
+
+ // Get all the opportunity ClosedDate is Last 90 Days 
+SELECT Name, CloseDate, StageName
+ FROM Opportunity
+ WHERE CloseDate = LAST_90_DAYS
+ ORDER BY CloseDate Desc
+
+
+
+ Child to Parent Query 
+// Get all Contact Name and Account Name that contact belong to 
+// Filter the contact to only show contact with Account 
+
+
+
+SELECT Name , AccountId, Account.Name
+FROM Contact
+WHERE AccountId != null 
+
+
+
+// Get all the casre records Subject and Account Name
+//  that belong to Account with Name 
+// starts with United 
+
+
+
+SELECT Subject, Account.Name 
+FROM Case
+WHERE Account.Name LIKE 'United%'
+
+
+SELECT Subject, Account.Name , Contact.Name
+FROM Case
+WHERE Account.Name LIKE 'United%'
+
+
+
+SELECT Subject, Account.Name , Contact.Name , CreatedBy.Name
+FROM Case
+WHERE Account.Name LIKE 'United%'
+
+
+
+
+// Get All the Books Name, Price, Contact Name 
+// Sort the result by Conact Name and show empty values on the botton 
+// Filter the result to show only Books with Contact Name Snow 
+SELECT Name , Price__c , Contact__r.Name
+FROM Book__c
+WHERE Contact__r.Name  = 'Snow'
+
+
+
+
+
+//aggregate functions in a GROUP BY clause in SOQL queries to generate reports for analysis. 
+//Aggregate functions include AVG(), COUNT(), MIN(), MAX(), SUM(), and more.
+
+
+
+
+SELECT COUNT(Id), COUNT_DISTINCT(Name), 
+        SUM(Amount),MAX(Amount), MIN(Amount), AVG(Amount)
+FROM OPPORTUNITY
+
+
+// PART 2:
+
+// Get all Contact Name and Account Name that contact belong to 
+// Filter the contact to only show contact with Account 
+
+// SELECT Name , AccountId, Account.Name
+// FROM Contact
+// WHERE AccountId != null 
+
+
+// Get all Case Subject and Account Name that Case belong to 
+// Filter the Case to only show Case with Account 
+// SELECT Subject, Account.Name 
+// FROM Case
+// WHERE Account.Name  != null
+
+// Get all the case records Subject and Account Name
+//  that belong to Account with Name 
+// starts with United 
+// SELECT Subject, Account.Name 
+// FROM Case
+// WHERE Account.Name LIKE 'United%'
+
+// Get all opportunity Name, Owner Name, Account Name  
+// From Opportunity 
+// SELECT Name, Owner.Name, Account.Name
+// FROM Opportunity
+
+
+// Get All the Books Name, Price, Contact Name 
+// Sort the result by Conact Name and show empty values on the bottom 
+// SELECT Name , Price__c , Contact__r.Name
+// FROM Book__c
+// ORDER BY Contact__r.Name DESC NULLS LAST
+
+// Get All the Books Name, Price, Contact Name 
+// Sort the result by Conact Name and show empty values on the bottom 
+// Filter the result to show only Books with Contact Name Snow
+// SELECT Name , Price__c , Contact__r.Name
+// FROM Book__c
+// WHERE Contact__r.Name  = 'Snow'
+SELECT COUNT(Id), COUNT_DISTINCT(Name), 
+        SUM(Amount),MAX(Amount), MIN(Amount), AVG(Amount)
+FROM OPPORTUNITY
+
+
+
+
+
+

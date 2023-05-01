@@ -1,0 +1,64 @@
+
+// --------- 3/30/2023 ---------
+
+
+// 1. Get the Name, StageName of Opportunity isClosed (closed won | lost)
+// 2. Get the count of Opportunity for each isClosed (TRUE | FALSE) value 
+// 3. Get the count, Sum of all Amount for Opportunity each isWon (TRUE | FALSE) value
+// 4. Get the the CaseNumber, Status of Case NOT isClosed 
+// 5. Get the count of Case isClosed (Closed status)
+
+
+// SELECT Name, StageName
+//   FROM Opportunity
+//  WHERE IsClosed = true
+
+// SELECT isClosed, COUNT(Id)
+// FROM Opportunity
+// GROUP BY IsClosed
+
+// SELECT isWon, COUNT(Id) , SUM(Amount)
+// FROM Opportunity
+// GROUP BY IsWon
+
+// SELECT CaseNumber, Status FROM Case
+// WHERE IsClosed = FALSE
+
+//SELECT COUNT(ID)
+//FROM CASE 
+//WHERE IsClosed = TRUE
+
+
+
+
+
+//     Alias for aggregate columns:
+
+// SELECT COUNT(ID) MyOppsCount, SUM(Amount) TotalAmount,  
+//      MAX(Amount) HighestAmount,  MIN(Amount) LowestAmount, AVG(Amount) AverageAmount
+// FROM Opportunity
+
+
+
+// SELECT Count(ID) FROM Account 
+
+AggregateResult result = [SELECT Count(ID), MAX(AnnualRevenue) 
+                            FROM Account ] ; 
+System.debug('result value is : ' + result);
+// get the count value out of AggregateResult
+// we have get method that accept the column name and return the value 
+System.debug('Count of Account is ' +  result.get('expr0')       ); 
+System.debug('MAX(AnnualRevenue) is ' + result.get('expr1')       ); 
+
+// SELECT Count Of Opps and Min Opps amount for All opportunities 
+// Store the result into a variable and print it out 
+// give alias to your aggregate function as CountOfOpps , LowestAmount
+
+AggregateResult oppResult = [SELECT COUNT(Id) CountOfOpps, MIN(Amount)LowestAmount
+                            FROM OPPORTUNITY];
+
+System.debug('Count of Opps is ' +  oppResult.get('CountOfOpps')      ); 
+System.debug('MIN(Amount) is ' +    oppResult.get('LowestAmount')    ); 
+SELECT StageName, COUNT(Id) CountOfOpps
+FROM OPPORTUNITY
+GROUP BY StageName

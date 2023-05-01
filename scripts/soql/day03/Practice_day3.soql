@@ -1,0 +1,87 @@
+
+// ----------- 3/24/2023 ----------------
+
+// ---------SOQL SUB QUERY  Parent to Child QUERY-------------
+
+
+// Get All the Account Name
+// and Name and Email of Contacts associated with those account
+// from Account Object
+
+//SELECT Name, (SELECT Name,Email FROM Contacts)
+//FROM Account 
+//ORDER BY CreatedDate ASC
+
+
+
+// Get All the Account Name
+// and Subject  of Cases associated with those account
+// from Account Object
+
+//SELECT Name, (SELECT Subject FROM Cases)
+//FROM Account 
+//ORDER BY CreatedDate ASC
+
+
+
+
+// Get All the Contact Name
+// and Case Subject, Status of Cases associated with those accounts
+// from Contact Object
+
+//SELECT Name, (SELECT Subject, Status FROM Cases)  
+//FROM Contact
+
+
+
+// Get All The Contact Name
+// and Book Name, Price of Books Associated with those Contact
+// From Contact Odject
+
+//SELECT Name, (SELECT Name, Price__c FROM Books__r)  
+//FROM Contact
+
+
+
+// Get the Name of the Account if it has Child contact with Last Name 'FORBES'
+
+// STEP #1
+//SELECT AccountId  FROM  Contact WHERE LastName = 'Forbes'
+
+//STEP #2   in put Id from step1
+//SELECT Name
+//FROM Account
+//WHERE Id = '001Dn00000FCpWbIAL'
+
+// FINAL STEP  SUB QUERY insertion:
+//SELECT Name  
+//FROM Account 
+//WHERE Id IN (SELECT AccountId FROM  Contact WHERE LastName = 'Forbes')
+
+
+// Get all the Account Names if the Child Contacts Last Name starts with F
+//SELECT Name, (SELECT FirstName, LastName FROM Contacts WHERE LastName LIKE 'F%')
+//FROM Account 
+//WHERE Id IN (SELECT AccountId FROM  Contact WHERE LastName LIKE 'F%')
+
+
+
+
+// Get All the Account with Opportunity
+
+// STEP 1
+//SELECT Name, AccountId, Account.Name
+//FROM Opportunity
+
+// STEP 2
+SELECT Name  FROM Account
+WHERE Id IN (SELECT AccountId FROM Opportunity)
+
+
+
+
+
+
+
+
+

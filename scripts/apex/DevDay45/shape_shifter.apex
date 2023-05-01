@@ -1,0 +1,40 @@
+
+// -------------- 4/27/2023 -----------------
+//  SHAPE :::  ,   RECTANGLE   ,   CIRCLE   ,   SQUARE   ==> shape_shifter.apex to print  
+
+Rectangle s1 = new Rectangle();
+System.debug('My s1  value is ::: ' + s1);
+
+
+System.debug('---------------------------------');
+
+
+Rectangle s2 = new Rectangle('Book', 10, 8);
+s2.calculateArea();
+System.debug('My s2 value is ::: ' + s2);
+s2.displayShapeInfo();
+s2.draw();
+
+System.debug('---------------------------------');
+
+Square s3 = new Square('Window', 6);
+s3.calculateArea();
+s3.displayShapeInfo();
+System.debug('My s3 value is ::: ' + s3);
+s3.draw();
+
+
+System.debug('---------------------------------');
+
+Circle s4 = new Circle('Soccer', 5);
+s4.calculateArea();
+s4.displayShapeInfo();
+System.debug('My s4 value is ::: ' + s4);
+s4.draw();
+s4.roll();
+
+
+
+
+
+

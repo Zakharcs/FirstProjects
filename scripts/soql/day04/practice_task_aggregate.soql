@@ -1,0 +1,199 @@
+
+// ------------ 3/27/2023 -----------
+
+//            STARTWITH% 
+//            %ENDWITH
+//            %CONTAINS%
+
+//        IN is for exact match 
+//        LIKE is for partial match
+
+//        Count ====> Aggregate 
+//        Each =====> GROUP BY 
+
+
+//aggregate functions in a GROUP BY clause in SOQL queries to generate reports for analysis. Aggregate functions include AVG(), COUNT(), MIN(), MAX(), SUM(), and more.
+//SELECT COUNT(Id), COUNT_DISTINCT(Name), 
+//SUM(Amount),MAX(Amount), MIN(Amount), AVG(Amount)
+//FROM OPPORTUNITY
+
+
+
+ 
+// IN CLASS REVIEW TASKS :
+
+//## Task 6:
+
+//Write a SOQL SELECT statement to retrieve
+//the Name and Role.Name fields for all User 
+//records where the Role.Name contains Sale or CEO
+
+//SELECT Name, UserRole.Name
+//FROM User
+//WHERE UserRole.Name LIKE '%Sale%'
+//OR UserRole.Name LIKE '%CEO%'
+
+
+
+
+//Task8
+//Write a SOQL SELECT statement to retrieve
+//the Subject, ActivityDate, WhoId, Who.Name 
+//fields for all Task records where the WhoId not null
+
+//SELECT Subject, ActivityDate, WhoId, Who.Name
+//FROM Task
+//WHERE WhoId != NULL
+
+
+
+
+//Write a SOQL SELECT statement to retrieve
+//the Subject, Contact.Name, fields for all Case records where
+// the Contact.Name is not null and
+// Subject contains Generator
+
+//SELECT  Subject, Contact.Name
+//FROM CASE 
+//WHERE Contact.Name != NULL
+//AND Subject LIKE '%Generator%'
+
+
+
+//## Task 11:
+//Write a SOQL SELECT statement to retrieve
+// the `Account Name`, `Child Cases` with `Subject` contains `Generator`,  //for all **Account** records, only return account with cases
+ 
+//SELECT Name, (SELECT Subject FROM Cases WHERE Subject LIKE '%Generator%')
+//FROM Account
+//WHERE Id IN (SELECT AccountId from Case)
+
+
+
+
+//SELECT COUNT(Id), COUNT_DISTINCT(Name), SUM(Amount), MAX(Amount), MIN(Amount), AVG(Amount)
+//FROM Opportunity
+
+
+
+
+// Count the Opportunity In Closed Won Stage
+//SELECT COUNT(Id)
+//FROM Opportunity
+//WHERE StageName = 'Closed Won'
+
+
+
+// Count the Opportunity In Closed Lost Stage
+
+//SELECT Count (Id)
+//FROM Opportunity
+//WHERE StageName = 'Closed Lost'
+
+// Get the Opportunity Count and Sum of Ammount for each Stage
+
+
+//SELECT StageName, COUNT(Id), SUM(Amount)
+//FROM Opportunity
+//GROUP BY StageName
+// ---------------------------------------------------------------------
+// If you use aggregate function with any additional field in Select Line
+// It must be Grouped by that field or it will not work
+// Anytime you add new field other than the field in group by, it will not work
+// As long as is does not show up in group by field list
+// ---------------------------------------------------------------------
+// Get the count of Leads of each LeadSource
+
+//SELECT LeadSource, COUNT(Id)  
+//FROM Lead
+//GROUP BY 
+
+
+
+// Get the count of Leads of each State
+//SELECT State, COUNT(Id)
+//FROM Lead
+//GROUP BY State
+
+
+
+// Get the count of Leads of Each State
+// only return the row if the count more than 2
+
+//SELECT State, COUNT(Id)
+//FROM Lead
+//GROUP BY State
+//HAVING COUNT(Id)>=2         // HAVING goes after GROUP BY
+
+
+
+
+// Get the count of Leads of each Status 
+// only return the row if the count more than less than 5
+
+//SELECT Status, COUNT(Id)  
+//FROM Lead
+//GROUP BY Status
+
+
+// Get the count of the Leads for each Status 
+// only return the rows if the count is less than 5
+//SELECT Status, COUNT(Id)
+//FROM Lead
+//GROUP BY Status
+//HAVING COUNT(ID) < 5
+
+
+
+
+// Get All the count of Account and
+// The Sum of AnnualRevenue
+//for each Rating (Hot, Cold Warm, NULL)
+
+//SELECT Rating, Count(Id), SUM(AnnualRevenue)       // SUM => aggregate AnnualRevenue
+//FROM Account
+//GROUP BY Rating
+//HAVING Rating != NULL
+
+
+//SELECT Rating, Count(Id), SUM(AnnualRevenue)     
+//FROM Account
+//GROUP BY Rating
+//HAVING Rating != NULL
+
+
+
+
+// Since the condition here
+// is not on already aggregated result
+// we can simply filter it out
+// before even using GROUP BY with HERE
+SELECT Rating, COUNT(Id), SUM(AnnualRevenue)
+FROM Account
+WHERE Rating !=NULL
+GROUP BY Rating
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

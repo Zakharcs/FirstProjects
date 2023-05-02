@@ -35,7 +35,7 @@ public class ScheduledTaskCleanUp implements Schedulable {
 
 }
 
-/**          put SOQL directrly in the loop without variavle example :::
+/**          put SOQL directrly in the loop without variable example :::
 
         for(Task each : [SELECT Id, Subject, ActivityDate, Status
                          FROM Task 

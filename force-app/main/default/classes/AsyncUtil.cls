@@ -28,7 +28,15 @@ public class AsyncUtil {
      }
 
    
+    @future
+    public static void UpdateCurrentUserRoleToCFO(){
 
+
+      
+
+
+
+    }
 
 
 

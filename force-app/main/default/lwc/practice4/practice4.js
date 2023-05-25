@@ -11,12 +11,12 @@ export default class Practice4 extends LightningElement {
     }
 
     handleNum1Change(event){
-
+        // set the value of num1 to what user typed
         this.num1 = parseInt(event.target.value);
    }
 
     handleNum2Change(event){
-
+        // set the value of num2 to what user tped
         this.Num2 = parseInt(event.target.value);
 
     }

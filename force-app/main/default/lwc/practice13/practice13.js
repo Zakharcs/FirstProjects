@@ -2,25 +2,19 @@
 // -------------- 5/30/2023 -------- Practice 13 ----------------------
 
 
-import { LightningElement } from 'lwc';
+import { LightningElement } from "lwc";
+export default class Practice13Copy extends LightningElement {
+  salary = 140000;
 
-export default class Practice13 extends LightningElement {
+  handleSalaryChange(event) {
+    this.salary = event.target.value;
+  }
 
-        salary = 140000 ;
+  get notTooBad() {
+    return this.salary >= 100000 && this.salary <= 135000;
+  }
 
-        handleSalaryChange(event) {
-
-            this.salary = event.target.value;
-        }
-
-        get notTooBad(){
-            return this.salary>=100000 
-            && this.salary <= 135000;
-        }
-
-        get averageSalary(){
-            return this.Salary > 135000 
-            && this.salary <= 175000;
-        }
-
+  get averageSalary() {
+    return this.salary > 135000 && this.salary <= 175000;
+  }
 }

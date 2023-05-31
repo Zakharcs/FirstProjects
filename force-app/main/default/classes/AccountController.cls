@@ -43,7 +43,10 @@ public with sharing class AccountController {
   * @return List of Accounts in your salesforce org 
   * with AnnualRevenue Field filled up
   */
- public static List<Account> getAccountWithAnnualRevenue(){
+
+@AuraEnabled(cacheable=true)
+
+public static List<Account> getAccountWithAnnualRevenue(){
 
      // List<Account> lst = [SELECT Id,Name, AnnualRevenue 
      //         FROM Account 

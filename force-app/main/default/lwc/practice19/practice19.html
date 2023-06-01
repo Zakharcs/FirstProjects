@@ -27,7 +27,9 @@
                 <p>{theAccount.data.Name} --- {theAccount.data.AnnualRevenue}</p>
             </template>
             <!-- Conditionally display error : NO Account Found !! -->
-
+            <template lwc:elseif={theAccount.error}>
+                <p>NO Account with this name Found!!</p>
+            </template>
 
             <!-- show wired result in raw json String format -->
             <pre>

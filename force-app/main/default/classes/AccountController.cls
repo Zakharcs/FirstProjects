@@ -78,6 +78,24 @@ public with sharing class AccountController {
     }
 
     /**
+     * Create a method to return Max Opportunity Amount in your org 
+     * with name getMaxOppAmount no param
+     * @return theAmount in Decimal 
+     * make it available for your LWC 
+     */
+    @AuraEnabled(cacheable=true)
+    public static Decimal getMaxOppAmount(){
+      
+        AggregateResult result =  [SELECT MAX(Amount) MaxAmount FROM Opportunity] ; 
+        
+        Decimal max = (Decimal) result.get('MaxAmount') ; 
+    
+       return max; 
+
+    }
+
+
+    /**
      * Create a static method called getMaxRevenue
      * @return max AnnualRevenue for all Accounts in your salesforce org 
      */

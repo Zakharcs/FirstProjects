@@ -1,7 +1,7 @@
 
 
 
-import { LightningElement } from "lwc";
+import { LightningElement, api } from "lwc";
 import OPP_OBJECT from "@salesforce/schema/Opportunity";
 import NAME_FIELD from "@salesforce/schema/Opportunity.Name";
 import STAGE_FIELD from "@salesforce/schema/Opportunity.StageName";
@@ -14,8 +14,11 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 export default class Practice24_edit extends LightningElement {
 
     objectApiName = OPP_OBJECT; 
-    recordId = "006Dn00000A4LWtIAN"
-
+    //recordId='006Dn00000A4LWtIAN';
+    @api // this decoration is used to make this property public
+    // so the parent component or the record page can inject the recordId
+    // to this property automatically if we are on record page
+    recordId;
 
     fields = [NAME_FIELD, STAGE_FIELD, CLOSE_DATE_FIELD, AMOUNT_FIELD]; 
 

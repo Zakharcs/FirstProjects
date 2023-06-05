@@ -6,9 +6,28 @@ import { LightningElement, wire } from "lwc";
 import NAME_FIELD from "@salesforce/schema/Opportunity.Name";
 import STAGE_FIELD from "@salesforce/schema/Opportunity.StageName";
 import CLOSE_DATE_FIELD from "@salesforce/schema/Opportunity.CloseDate";
+import USER_Id from '@salesforce/user/Id';
+
+import USERNAME_FIELD from "@salesforce/schema/User.Username";
+import EMAIL_FIELD from "@salesforce/schema/User.Email";
 
 
 export default class Practice26 extends LightningElement {
+
+    userId = USER_Id;
+
+    @wire(getRecord, { recordId: '$userId', fields: [USERNAME_FIELDS, EMAIL_FIELD]  })
+    currentUser ;
+
+    get username(){
+        return getFieldValue(this.currentUser.data, USERNAME_FIELD);
+    }
+
+
+    get userEmail(){
+        return getFieldValue(this.currentUser.data, EMAIL_FIELD);
+    }
+
 
 
     recordId = '006Dn00000A4LWtIAN';  // use your own recordId
@@ -42,6 +61,10 @@ export default class Practice26 extends LightningElement {
 
 
 }
+
+
+
+
 
 
 

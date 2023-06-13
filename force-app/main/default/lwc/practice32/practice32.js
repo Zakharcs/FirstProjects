@@ -25,8 +25,15 @@ export default class Practice32 extends LightningElement {
         // };
     }
 
+
+
     changeFirstItem() {
         this.sports[0] = 'CODING !!!';
     }
+
+
+
+
+
 
 }

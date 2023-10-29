@@ -14,13 +14,14 @@ body :
 
 String url = 'https://pi2hscwpkz.us-east-1.awsapprunner.com/api/spartans'; 
 
+// Create a variable as a string for body as a reqBody
 String reqBody = '{"name":"Jon Snow","gender":"Male","phone":1234567890}' ;
 
 Http h = new Http(); 
 
 HttpRequest req = new HttpRequest();
-req.setMethod('POST'); 
-req.setEndpoint(url) ; 
+req.setEndpoint(url) ;
+req.setMethod('POST');  
 req.setHeader('Content-Type', 'application/json');
 req.setBody(reqBody); 
 

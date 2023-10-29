@@ -17,10 +17,10 @@ String url = 'https://pi2hscwpkz.us-east-1.awsapprunner.com/api/spartans';
 
 // String reqBody = '{"name":"Jon Snow","gender":"Male","phone":1234567890}' ;
 Map<String,Object> myBodyMap = new Map<String,Object>();
-myBodyMap.put('name', 'Jon Snow');
+myBodyMap.put('name', 'John Spartan');
 myBodyMap.put('gender', 'Male');
 myBodyMap.put('phone', 1234567890);
-String reqBody  = JSON.serialize(myBodyMap); 
+String reqBody  = JSON.serializePretty(myBodyMap); 
 
 Http h = new Http(); 
 

@@ -15,5 +15,5 @@ System.debug('myBodyMap value is : ' + myBodyMap);
 
 
 // Turn this Map object into Json String so we can pass as body to the POST request if we want to 
-String jsonStr = JSON.serialize(myBodyMap) ; 
+String jsonStr = JSON.serializePretty(myBodyMap) ; 
 System.debug('jsonStr value is : ' + jsonStr);

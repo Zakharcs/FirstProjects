@@ -27,17 +27,20 @@ System.debug('Body : ' + res.getBody() );
 System.debug('Content-Type header value ' +  res.getHeader('content-type')      ); 
 
 // Apex Utility class called JSON has lots of methods 
-// to turn JSON into Apex Type  (De-serialization)
-// or to turn Apex Type into JSON (serialization)
+// to turn JSON into Apex Type      (De-serialization)
+// or to turn Apex Type into JSON   (Serialization)
 
 // Use JSON.deserializeUntyped to turn a json String to object 
 // cast the type object to (Map<String,Object>) 
+// JSON.deserializedUtyped will take JASON and turn it into a jeneral object,
+// Will cast to Map    gets us KEY/VALUE
+// KEY  is always is a String
 Map<String,Object> resultMap = (Map<String,Object>) JSON.deserializeUntyped(  res.getBody()  ) ; 
 
 System.debug('resultMap value is : ' + resultMap);
 System.debug('resultMap.get(\'name\') value is : ' + resultMap.get('name'));
 System.debug('resultMap.get(\'gender\') value is : ' + resultMap.get('gender'));
 System.debug('resultMap.get(\'id\') value is : ' + resultMap.get('id'));
-System.debug('resultMap.get(\'phone\') value is : ' + resultMap.get('phone')); 
+System.debug('resultMap.get(\'phone\') value is : ' + resultMap.get('phone'));
 
 

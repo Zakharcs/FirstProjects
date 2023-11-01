@@ -35,7 +35,7 @@ System.debug('Content-Type header value ' +  res.getHeader('content-type')      
 // JSON.deserializedUtyped will take JASON and turn it into a jeneral object,
 // Will cast to Map    gets us KEY/VALUE
 // KEY  is always is a String
-Map<String,Object> resultMap = (Map<String,Object>) JSON.deserializeUntyped(  res.getBody()  ) ; 
+Map<String,Object> resultMap = (Map<String,Object>) JSON.deserializeUntyped( res.getBody() ) ; 
 
 System.debug('resultMap value is : ' + resultMap);
 System.debug('resultMap.get(\'name\') value is : ' + resultMap.get('name'));
